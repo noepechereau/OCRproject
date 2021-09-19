@@ -1,0 +1,9 @@
+git clone 	#clone le projet à partir du dernier push
+git commit 	#met en liste d'attente le push à venir
+git pull 	#recupère la dernière version du projet 
+git push 	#envoie les modif sur la branche
+
+git branch "le nom de la branche" 	#créer une nouvelle branche
+git chekout "le nom de la branche" 	#change de branche 
+git push --set-upstream origin "nom de la branche" 	#push la branche sur le main
+
