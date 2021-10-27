@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "demo.h"
-#include "useful/builtin.h"
+//#include "useful/builtin.h"
 #include "NeuralNetworks/DemoNeuralNetwork.h"
 
 int main()
@@ -14,11 +14,12 @@ int main()
     Console_ReadString(choice, "Choose your mode: ", 99);
     
     
-
+	/*
     if (!strcmp(choice,"0"))
     {
         ImageDemo();
     }
+    */
     
     if (!strcmp(choice,"1"))
     {
