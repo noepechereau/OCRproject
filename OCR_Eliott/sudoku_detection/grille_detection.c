@@ -10,51 +10,6 @@
 #include "grille_detection.h"
 
 
-SDL_Surface* Detect_RLSA_Block(SDL_Surface* image, int n)
-{
-    SDL_Surface* image_temp = Image_Copy(image);
-    SDL_LockSurface(image);
-    SDL_LockSurface(image_temp);
-
-    int c = 0;
-    int c2 = 0;
-    bool breaking = false;
-
-    for (int x = 0; x < image->w; x++)
-    {
-        for (int y = 0; y < image->h; y++)
-        {
-            c = Pixel_GetR(SDL_GetPixel32(image,x,y));
-            if (c == 255)
-            {
-                for (int x2 = x-n; x2 <= x + n; x2++)
-                {
-                    for (int y2 = y-n; y2 <= y + n; y2++)
-                        if (Pixel_Exist(image,x2,y2))
-                        {
-                            c2 = Pixel_GetR(SDL_GetPixel32(image,x2,y2));
-                            if (c2 == 0)
-                            {
-                                SDL_PutPixel32(image_temp,x,y,Pixel_RGBto32(255,0,0
-                                        ,0));
-                                breaking = true;
-                                break;
-                            }
-                        }
-                    if (breaking)
-                    {
-                        breaking = false;
-                        break;
-                    }
-                }
-            }
-        }
-    }
-    SDL_UnlockSurface(image);
-    SDL_UnlockSurface(image_temp);
-    return image_temp;
-}
-
 PixelBlock Detect_Grille(SDL_Surface* image, SDL_Renderer* renderer)
 {
 
@@ -74,7 +29,6 @@ PixelBlock Detect_Grille(SDL_Surface* image, SDL_Renderer* renderer)
         {
             SDL_SetRenderDrawColor(renderer, 255, 0, 0, 0);
             SDL_RenderDrawLine(renderer, x, 0, x, image->h);
-            printf("debug DrawLine left\n");
             x1 = x;
             x++;
             break;
@@ -89,7 +43,6 @@ PixelBlock Detect_Grille(SDL_Surface* image, SDL_Renderer* renderer)
         {
             SDL_SetRenderDrawColor(renderer, 255, 0, 0, 0);
             SDL_RenderDrawLine(renderer, 0,y, image->w, y);
-            printf("debug DrawLine top\n");
             y1 = y;
             y++;
             break;
@@ -104,7 +57,6 @@ PixelBlock Detect_Grille(SDL_Surface* image, SDL_Renderer* renderer)
         {
             SDL_SetRenderDrawColor(renderer, 255, 0, 0, 0);
             SDL_RenderDrawLine(renderer, x, 0, x, image->h);
-            printf("debug DrawLine right\n");
             x2 = x;
             x--;
             break;
@@ -119,7 +71,6 @@ PixelBlock Detect_Grille(SDL_Surface* image, SDL_Renderer* renderer)
         {
             SDL_SetRenderDrawColor(renderer, 255, 0, 0, 0);
             SDL_RenderDrawLine(renderer, 0,y, image->w, y);
-            printf(" DrawLine top\n");
             y2 = y;
             break;
         }

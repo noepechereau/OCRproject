@@ -69,18 +69,6 @@ Uint32 Pixel_Grayscale(Uint32 color)
     return Pixel_RGBto32(255,gray,gray,gray);
 }
 
-Uint32 Pixel_Constrast(Uint32 color, int delta)
-{
-    int r = Pixel_GetR(color);
-    int g = Pixel_GetG(color);
-    int b = Pixel_GetB(color);
-    double factor = (259 * (delta + 255))/(255 * (259 - delta));
-    r = Pixel_absRGB(factor * (r - 128) + 128);
-    g = Pixel_absRGB(factor * (g - 128) + 128);
-    b = Pixel_absRGB(factor * (b - 128) + 128);
-    return Pixel_RGBto32(255,r,g,b);
-}
-
 //Need to be apply on a gray scale color
 Uint32 Pixel_Treshold(Uint32 color, int n)
 {
@@ -114,41 +102,4 @@ Uint32 Pixel_Convolution(SDL_Surface* image,int matrix[3][3], int x, int y, doub
     }
 
     return Pixel_RGBto32(255,Pixel_absRGB(r),Pixel_absRGB(r),Pixel_absRGB(r));
-}
-
-Uint32 Pixel_Median(SDL_Surface* image, int x, int y)
-{
-    int size = 0;
-
-    for (int i = x - 1; i <= x + 1; i++)
-    {
-        for (int j = y - 1; j <= y + 1; j++)
-        {
-            if(Pixel_Exist(image, i, j))
-            {
-                size++;
-            }
-        }
-    }
-
-    int* L = malloc(size*sizeof(int));
-    int k = 0;
-    Uint32 color = 0;
-    for (int i = x - 1; i <= x + 1; i++)
-    {
-        for (int j = y - 1; j <= y + 1; j++)
-        {
-            if(Pixel_Exist(image, i, j))
-            {
-                color = SDL_GetPixel32(image, i, j);
-                L[k] = Pixel_GetR(color);
-                k++;
-            }
-        }
-    }
-    int median = CalculMedian(L, size);
-
-    free(L);
-
-    return Pixel_RGBto32(255, median, median, median);
 }

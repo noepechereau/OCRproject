@@ -8,8 +8,8 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/sdl2)
 
 # Sources files
 set(SRCS
+		rotation/rotation.c
 		sudoku_detection/grille_detection.c
-		character_detection/char_detect.c
 		image_system/color_system.c
 		image_system/image_manipulation.c
 		image_system/image_system.c
@@ -26,8 +26,8 @@ set(SRCS
     
 # Headers files
 set(HEADERS
+		rotation/rotation.h
 		sudoku_detection/grille_detection.h
-		character_detection/char_detect.h
 		image_system/color_system.h
 		image_system/image_manipulation.h
 		image_system/image_system.h
