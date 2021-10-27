@@ -93,7 +93,7 @@ void DemoNeural()
     free(h);
     free(z);
 }
-
+//never used while load_is_empty() == true ;
 void demoWithLoad()
 {
     NetworkData data;

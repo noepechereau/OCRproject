@@ -31,7 +31,7 @@ z = {
 */
 void entry()
 {
-    NetworkData data = 
+    NetworkData data =  //struc data
     {
         .x = 1,
         .y = 0,
@@ -94,7 +94,7 @@ void entry()
     updateTreeNode(h, z);
     printRes(*(z->activation), 0, 1);
 
-
+    //fi=onction print a améliorer
     free(h->neurons);
     free(z->neurons);
     free(h);
