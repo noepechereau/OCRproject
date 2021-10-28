@@ -2,11 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "../useful/builtin.h"
+#include "../useful/basics.h"
 
-//------------------------------------------------------------------------
-//---- ALL THE NECESSARY FUNCTION TO MANIPULATE SDL SURFACE
-//------------------------------------------------------------------------
 
 void Image_ToRenderer(SDL_Surface * image, SDL_Renderer* renderer)
 {
@@ -28,29 +25,16 @@ SDL_Surface* Image_Copy(SDL_Surface* image)
 {
     return SDL_ConvertSurface(image, image->format, SDL_SWSURFACE);
 }
-
-//------------------------------------------------------------------------
-//---- PUT A PIXEL ON A SDL SURFACE FROM AN HEXA COLOR
-//------------------------------------------------------------------------
 void SDL_PutPixel32(SDL_Surface *surface, int x, int y, Uint32 pixel)
 {
     Uint8 *p = (Uint8*)surface->pixels + y * surface->pitch + x * 4;
     *(Uint32*)p = pixel;
 }
-
-//------------------------------------------------------------------------
-//---- GIVE A HEXA COLOR FROM A SDL SURFACE
-//------------------------------------------------------------------------
 Uint32 SDL_GetPixel32(SDL_Surface *surface, int x, int y)
 {
     Uint8 *p = (Uint8*)surface->pixels + y * surface->pitch + x * 4;
     return *(Uint32*)p;
 }
-
-//------------------------------------------------------------------------
-//---- SAVE A CASE IN AN IMAGE.bmp
-//------------------------------------------------------------------------
-
 void Case_Save(int x, int x2, int y, int y2, SDL_Surface* image, char* name)
 {
     SDL_Rect rect;
@@ -64,11 +48,6 @@ void Case_Save(int x, int x2, int y, int y2, SDL_Surface* image, char* name)
     SDL_BlitSurface(image, &rect, new_image, NULL);
     SDL_SaveBMP(new_image, name);
 }
-
-//------------------------------------------------------------------------
-//---- SAVE ALL THE CASES FROM THE GRILLE IN IMAGES.bmp
-//------------------------------------------------------------------------
-
 void Save_Cases(SDL_Surface* image)
 {
     int wc = image->w/9;

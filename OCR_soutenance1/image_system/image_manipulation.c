@@ -2,10 +2,6 @@
 #include "image_system.h"
 #include "color_system.h"
 
-//------------------------------------------------------------------------
-//---- OPERATION FUNCTIONS ON IMAGE
-//------------------------------------------------------------------------
-
 void Image_GrayScale(SDL_Surface* image)
 {
     Uint32 color = 0;
@@ -54,8 +50,6 @@ void Image_Convolution(SDL_Surface* image, int matrix[3][3], double factor)
     SDL_FreeSurface(image_temp);
 }
 
-
-//Apply all the useful correction to the image
 void ApplyCorrection(SDL_Surface* image)
 {
     int blur[3][3] = {

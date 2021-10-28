@@ -18,7 +18,7 @@ set(SRCS
 		NeuralNetworks/DemoNeuralNetwork.c
 		NeuralNetworks/FileManagment.c
 		NeuralNetworks/NeuralNetwork.c
-		useful/builtin.c
+        useful/basics.c
 		main.c
 		demo.c
     )
@@ -36,7 +36,7 @@ set(HEADERS
 		NeuralNetworks/DemoNeuralNetwork.h
 		NeuralNetworks/FileManagment.h
 		NeuralNetworks/NeuralNetwork.h
-		useful/builtin.h
+		useful/basics.h
 		demo.h)
 	
 # Add SDL2.dll

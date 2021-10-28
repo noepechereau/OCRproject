@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <stdbool.h>
-#include "../type/pixel.h"
+#include "../struct/pixel.h"
 
 PixelBlock Detect_Grille(SDL_Surface* image, SDL_Renderer* renderer);
 

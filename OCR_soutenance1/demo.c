@@ -3,7 +3,7 @@
 
 #include "rotation/rotation.h"
 #include "sudoku_detection/grille_detection.h"
-#include "useful/builtin.h"
+#include "useful/basics.h"
 #include "image_system/image_system.h"
 #include "image_system/image_manipulation.h"
 
@@ -17,8 +17,7 @@ void ImageDemo()
     Console_ReadString(angle,"Rotation (angle in degree) :", 3);
     double ang;
     sscanf(angle, "%lf", &ang);
-    printf("%f\n", ang);
-    Console_ReadString(rlsa,"Show RLSA (y or n) :", 2);
+    Console_ReadString(rlsa,"RLSA (y or n) :", 2);
 
 
     //------------------------------------------------------------------------
@@ -49,7 +48,7 @@ void ImageDemo()
     {
         Image_ToRenderer(image_rot,renderer);
     }
-    Image_ToRenderer(image,renderer);
+    //Image_ToRenderer(image,renderer);
 
     //------------------------------------------------------------------------
     //---- GRILLE DETECTION, GRILLE SAVING AND CASE SAVING

@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <stdbool.h>
-#include "../type/pixel.h"
+#include "../struct/pixel.h"
 
 SDL_Surface* Image_Rotate(SDL_Surface* image, double angle);
 

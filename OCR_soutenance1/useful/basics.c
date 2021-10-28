@@ -7,27 +7,22 @@
 
 void PauseSDL()
 {
-    int continuer = 1;
+    int i = 1;
     SDL_Event event;
 
-    while (continuer)
+    while (i)
     {
         SDL_WaitEvent(&event);
         switch(event.type)
         {
             case SDL_QUIT:
-                continuer = 0;
+                i = 0;
         }
     }
     SDL_QuitSubSystem(SDL_INIT_VIDEO);
     SDL_Quit();
 }
 
-void DisplayError(char* message)
-{
-    printf("%s",message);
-    exit(1);
-}
 
 bool FileExist(char* path)
 {
