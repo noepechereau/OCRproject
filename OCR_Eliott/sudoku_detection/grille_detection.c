@@ -10,6 +10,7 @@
 #include "grille_detection.h"
 
 
+
 PixelBlock Detect_Grille(SDL_Surface* image, SDL_Renderer* renderer)
 {
 

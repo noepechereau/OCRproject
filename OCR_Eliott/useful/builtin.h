@@ -3,10 +3,12 @@
 
 #include <stdbool.h>
 #include "../type/pixel.h"
+#include <SDL2/SDL.h>
 
 void DisplayError(char* message);
 void Console_ReadString(char *var, char* message, int size);
 bool FileExist(char* path);
 void PauseSDL();
+
 
 #endif // BUILTIN_H_INCLUDED

@@ -4,13 +4,17 @@
 #else
 #	include <SDL2/SDL.h>
 #endif
+#include <math.h>
 #include "../image_system/image_system.h"
 #include "../image_system/color_system.h"
 #include "../useful/builtin.h"
 #include "rotation.h"
 
-void Image_Rotate(SDL_Surface* image, double angle)
+SDL_Surface* Image_Rotate(SDL_Surface* image, double angle)
 {
+    SDL_Surface* image_temp = Image_Copy(image);
+    SDL_LockSurface(image_temp);
+
     Uint32 color;
     double xp;
     double yp;
@@ -19,9 +23,6 @@ void Image_Rotate(SDL_Surface* image, double angle)
     double sin_angle = sin(angle);
     int center_x = (int) image->w / 2;
     int center_y = (int) image->h / 2;
-
-    SDL_Surface* image_temp = Image_Copy(image);
-    SDL_LockSurface(image_temp);
 
     for (int x = 0; x < image->w; x++)
     {
@@ -41,6 +42,7 @@ void Image_Rotate(SDL_Surface* image, double angle)
         }
     }
 
+
     SDL_UnlockSurface(image_temp);
-    SDL_FreeSurface(image_temp);
+    return image_temp;
 }

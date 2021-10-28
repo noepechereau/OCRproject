@@ -7,14 +7,17 @@
 #include "image_system/image_system.h"
 #include "image_system/image_manipulation.h"
 
+
 void ImageDemo()
 {
     char path[99] = {0};
     char rlsa[2] = {0};
     char angle[3] = {0};
     Console_ReadString(path,"\nImage path : ", 99);
-    /*Console_ReadString(angle,"Rotation (angle in degree) :", 3);
-    double ang = sscanf("%ls", angle);*/
+    Console_ReadString(angle,"Rotation (angle in degree) :", 3);
+    double ang;
+    sscanf(angle, "%lf", &ang);
+    printf("%f\n", ang);
     Console_ReadString(rlsa,"Show RLSA (y or n) :", 2);
 
 
@@ -35,7 +38,8 @@ void ImageDemo()
     //------------------------------------------------------------------------
 
     ApplyCorrection(image);
-    //Image_Rotate(image, ang);
+    SDL_Surface* image_rot = Image_Rotate(image, ang);
+
     SDL_Surface* image_rlsa = Detect_RLSA_Block(image,7);
     if (strcmp(rlsa,"y"))
     {
@@ -43,26 +47,19 @@ void ImageDemo()
     }
     else
     {
-        Image_ToRenderer(image,renderer);
+        Image_ToRenderer(image_rot,renderer);
     }
+    Image_ToRenderer(image,renderer);
 
     //------------------------------------------------------------------------
-    //---- GRILLE DETECTION
+    //---- GRILLE DETECTION, GRILLE SAVING AND CASE SAVING
     //------------------------------------------------------------------------
 
     PixelBlock grille = Detect_Grille(image_rlsa, renderer);
 
-    SDL_Rect rect;
-    rect.y = grille.left_top.y;
-    rect.x = grille.left_top.x;
-    rect.w = grille.right_top.x - grille.left_top.x;
-    rect.h = grille.left_bottom.y - grille.left_top.y;
-
-    SDL_Surface* new_image = SDL_CreateRGBSurface(0,rect.w, rect.h, 32,0,0,0,0);
-
-    int h = SDL_BlitSurface(image, &rect, new_image, NULL);
-    printf("%d %s\n",h,  SDL_GetError());
-    SDL_SaveBMP(new_image, "out.bmp");
+    Case_Save(grille.right_top.x, grille.left_top.x, grille.left_bottom.y, grille.left_top.y, image, "grille.bmp");
+    SDL_Surface* Grille = Image_Load("grille.bmp");
+    Save_Cases(Grille);
 
     SDL_RenderPresent(renderer);
 
