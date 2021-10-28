@@ -1,12 +1,9 @@
-#ifdef _WIN32
-#	include <SDL.h>
-#else
-#	include <SDL2/SDL.h>
-#endif
+#include <SDL2/SDL.h>
 #include "stdbool.h"
 #include "image_system.h"
 #include <stdlib.h>
 #include "../useful/builtin.h"
+
 //Get RGB colors from an Uint32 color
 uint8_t Pixel_GetR(Uint32 c)
 {
@@ -37,7 +34,7 @@ Uint32 Pixel_RGBto32(int a, int r, int g, int b)
   return c;
 }
 
-//Clamp the RGB at 255 and 0
+
 int Pixel_absRGB(double c)
 {
     if (c > 255)
@@ -69,7 +66,7 @@ Uint32 Pixel_Grayscale(Uint32 color)
     return Pixel_RGBto32(255,gray,gray,gray);
 }
 
-//Need to be apply on a gray scale color
+
 Uint32 Pixel_Treshold(Uint32 color, int n)
 {
     int r = Pixel_GetR(color);

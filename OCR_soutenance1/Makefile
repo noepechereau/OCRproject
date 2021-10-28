@@ -1,9 +1,9 @@
 CC = @gcc
-CFLAGS = -Wall -Wextra -pedantic-errors -g -ldl -lm
+CFLAGS = -Wall -Wextra -g -ldl -lm
 
 SRC = useful/builtin.c image_system/image_manipulation.c image_system/color_system.c image_system/image_system.c main.c demo.c NeuralNetworks/BuiltinsNeuralNetworks.c NeuralNetworks/BackPropagation.c NeuralNetworks/DemoNeuralNetwork.c NeuralNetworks/FileManagment.c NeuralNetworks/NeuralNetwork.c sudoku_detection/grille_detection.c rotation/rotation.c SudokuSolver/sudoku.c
 
-LINKERFLAGS = -lSDL2main -lSDL2 -lSDL2_image
+LINKERFLAGS = -lSDL2 -lSDL2_image
 
 OBJ= $(SRC:.c=.o)
 

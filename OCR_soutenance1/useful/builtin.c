@@ -1,12 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#ifdef _WIN32
-#	include <io.h>
-#else
+#include <unistd.h>
 #include <SDL2/SDL.h>
 #include <stdbool.h>
-#	include <unistd.h>
-#endif
 #include <string.h>
 
 void PauseSDL()
@@ -57,12 +53,3 @@ void Console_ReadString(char *var, char* message, int size)
         }
     }
 }
-
-size_t max_size(size_t a, size_t b)
-{
-    if (a >= b)
-        return a;
-    return b;
-}
-
-

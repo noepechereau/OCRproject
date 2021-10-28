@@ -1,8 +1,4 @@
-#ifdef _WIN32
-#	include <SDL.h>
-#else
-#	include <SDL2/SDL.h>
-#endif
+#include <SDL2/SDL.h>
 #include "image_system.h"
 #include "color_system.h"
 
@@ -59,7 +55,7 @@ void Image_Convolution(SDL_Surface* image, int matrix[3][3], double factor)
 }
 
 
-//Apply all the useful correction to the image before bloc detection
+//Apply all the useful correction to the image
 void ApplyCorrection(SDL_Surface* image)
 {
     int blur[3][3] = {

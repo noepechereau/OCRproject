@@ -57,7 +57,8 @@ void ImageDemo()
 
     PixelBlock grille = Detect_Grille(image_rlsa, renderer);
 
-    Case_Save(grille.right_top.x, grille.left_top.x, grille.left_bottom.y, grille.left_top.y, image, "grille.bmp");
+    Case_Save(grille.right_top.x, grille.left_top.x, grille.left_bottom.y,
+              grille.left_top.y, image, "grille.bmp");
     SDL_Surface* Grille = Image_Load("grille.bmp");
     Save_Cases(Grille);
 
