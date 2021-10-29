@@ -15,8 +15,8 @@ void DemoNeural()
     //initialisation des valeurs du réseau de neurones
     NetworkData data = 
     {
-        .x = 1,
-        .y = 0,
+        .x = 0,
+        .y = 1,
         .excpect = 1,
         .activations = {randd(), randd()},
         .weights = {randd(), randd(), randd(), randd(), randd()},
@@ -59,13 +59,13 @@ void DemoNeural()
 
 	//affichage des résultats
     printf("\n	==== Initialisation of the neural network ====\n");
-    printNetwork(h, z, &data);
+    printNetwork(h, z);
     printf("\n");
     printf("\n	= Learning with v = 0.6 and 20000 iterations ==\n");
     learnAverage(h, z, &data, 0.6, 20000); // lancement de la backprop
     printf("\n");
     printf("\n	=========== Network after learning ============\n");
-    printNetwork(h, z, &data);
+    printNetwork(h, z);
     printf("\n");
 
 	printf("	             ***    Results    ***             \n\n");

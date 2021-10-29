@@ -41,13 +41,8 @@ void printNode(Node *node, char name)
     printf("    			bias = %f\n", *(node->bias));
 }
 
-void printNetwork(Node *h, Node *z, NetworkData *data)
+void printNetwork(Node *h, Node *z)
 {
-    printf("\n	Exemple sent to neural network :\n");
-    printf("\n");
-    printf("		x = %0.0f\n", data->x);
-    printf("		y = %0.0f\n", data->y);
-    printf("		expected result : %0.0f\n", data->excpect);
     printf("\n");
     printf("	Nodes : \n\n");
     printNode(h, 'h');

@@ -29,7 +29,7 @@ double sigmoid(double x);
 double randd();
 void printRes(double res, double x, double y);
 void printNode(Node *node, char name);
-void printNetwork(Node *h, Node *z, NetworkData *data);
+void printNetwork(Node *h, Node *z);
 void updateTreeNode(Node *h, Node *z);
 double updateNode(Node *node);
 
