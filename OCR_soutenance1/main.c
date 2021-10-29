@@ -19,18 +19,18 @@ int main()
     {
         ImageDemo();
     }
-
+        
     if (!strcmp(choice,"1"))
     {
         DemoNeural();
     }
-
+    
     if (!strcmp(choice,"2"))
     {
         DemoSolver();
     }
 
-    return 0;
+	return 0;
 }
 
 

@@ -2,7 +2,7 @@
 #define BASICS_H_INCLUDED
 
 #include <stdbool.h>
-#include "../struct/pixel.h"
+#include "../type/pixel.h"
 #include <SDL2/SDL.h>
 
 void DisplayError(char* message);

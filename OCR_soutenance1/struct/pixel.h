@@ -17,5 +17,12 @@ struct PixelBlock
     pixel right_bottom;
 };
 
+typedef struct array_size array_size;
+struct array_size
+{
+    size_t nb_block;
+    size_t nb_line;
+    size_t nb_char;
+};
 
 #endif // PIXEL_H_INCLUDED

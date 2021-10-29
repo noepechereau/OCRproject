@@ -17,7 +17,8 @@ void ImageDemo()
     Console_ReadString(angle,"Rotation (angle in degree) :", 3);
     double ang;
     sscanf(angle, "%lf", &ang);
-    Console_ReadString(rlsa,"RLSA (y or n) :", 2);
+    printf("%f\n", ang);
+    Console_ReadString(rlsa,"Show RLSA (y or n) :", 2);
 
 
     //------------------------------------------------------------------------
@@ -48,7 +49,7 @@ void ImageDemo()
     {
         Image_ToRenderer(image_rot,renderer);
     }
-    //Image_ToRenderer(image,renderer);
+    Image_ToRenderer(image,renderer);
 
     //------------------------------------------------------------------------
     //---- GRILLE DETECTION, GRILLE SAVING AND CASE SAVING
@@ -56,8 +57,7 @@ void ImageDemo()
 
     PixelBlock grille = Detect_Grille(image_rlsa, renderer);
 
-    Case_Save(grille.right_top.x, grille.left_top.x, grille.left_bottom.y,
-              grille.left_top.y, image, "grille.bmp");
+    Case_Save(grille.right_top.x, grille.left_top.x, grille.left_bottom.y, grille.left_top.y, image, "grille.bmp");
     SDL_Surface* Grille = Image_Load("grille.bmp");
     Save_Cases(Grille);
 
