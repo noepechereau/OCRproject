@@ -85,18 +85,21 @@ int isValid(int grid[9][9] , int pos )
 
 void printGrid(int grid[9][9])
 {
+	printf("+-------+-------+-------+\n");
 	for (int i=0; i<9; i++)
-    	{
+    {
+    	printf("| ");
 		for (int j=0; j<9; j++)
 		{
-		    printf( ((j+1)%3) ? "%d " : "%d|", grid[i][j]);
+		    printf(((j+1)%3) ? "%d " : "%d | ", grid[i][j]);
 		}
 		printf("\n");
 		if ( i == 2 || i == 5 )
 		{
-			printf("------------------\n");
+			printf("+-------+-------+-------+\n");
 		}
 	}
+	printf("+-------+-------+-------+\n");
 }
 
 

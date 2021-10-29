@@ -23,7 +23,7 @@ double randd()
 void printRes(double res, double x, double y)
 {
     int cleanRes = 1;
-    double percent = round(res * 10000) / 100;
+    double percent = round(res * 10000) / 100; // transformation résultat de sortie en pourcentage 
     if (res < 0.5)
     {
         cleanRes = 0;
@@ -33,10 +33,11 @@ void printRes(double res, double x, double y)
 }
 
 
+
 void printNode(Node *node, char name)
 {
     printf("		Node %c :\n", name);
-    printf("    			activation = %f\n", *(node->activation));
+    printf("      			activation = %f\n", *(node->activation));
     printf("    			bias = %f\n", *(node->bias));
 }
 

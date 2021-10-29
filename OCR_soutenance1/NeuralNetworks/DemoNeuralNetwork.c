@@ -10,18 +10,21 @@
 
 void DemoNeural()
 {
-	srand(time(NULL));
+    srand(time(NULL)); 
+    
+    //initialisation des valeurs du réseau de neurones
     NetworkData data = 
     {
         .x = 1,
         .y = 0,
         .excpect = 1,
-        .activations = {0, 0},
+        .activations = {randd(), randd()},
         .weights = {randd(), randd(), randd(), randd(), randd()},
         .bias = {randd(), randd()}
     };
 
-    Node *h;
+	//initialisation unité cachée
+    Node* h;
 
     h = malloc(sizeof(*h));
 
@@ -36,7 +39,8 @@ void DemoNeural()
     h->neurons[2] = &data.y;
     h->neurons[3] = &data.weights[1];
 
-    Node *z;
+	//initialisation unité de sortie
+    Node* z;
 
     z = malloc(sizeof(*z));
 
@@ -53,13 +57,13 @@ void DemoNeural()
     z->neurons[4] = &data.y;
     z->neurons[5] = &data.weights[4];
 
-
+	//affichage des résultats
     printf("\n	==== Initialisation of the neural network ====\n");
     printNetwork(h, z, &data);
     printf("\n");
     printf("\n	= Learning with v = 0.6 and 20000 iterations ==\n");
-    learnAverage(h, z, &data, 0.6, 20000);
-	printf("\n");
+    learnAverage(h, z, &data, 0.6, 20000); // lancement de la backprop
+    printf("\n");
     printf("\n	=========== Network after learning ============\n");
     printNetwork(h, z, &data);
     printf("\n");
@@ -82,7 +86,7 @@ void DemoNeural()
 	}
 	printf("	+-------+-------+-------+----------+----------+\n\n");
 
-    // writeData(&data);
+  
 
     free(h->neurons);
     free(z->neurons);
