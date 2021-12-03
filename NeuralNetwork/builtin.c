@@ -18,6 +18,7 @@ double sigmoid(double x)
 
 double randd()
 {
+    srand(time(NULL)) ;
     return (((double)rand() / (RAND_MAX)) * 2) - 1;
 }
 
