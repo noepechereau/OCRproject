@@ -7,6 +7,9 @@
 #include "useful/basics.h"
 #include "image_system/image_system.h"
 #include "image_system/image_manipulation.h"
+#include "sudoku_detection/grille_detection2.h"
+#include "sudoku_detection/hough.h"
+#include "sudoku_detection/image.h"
 
 #define M_PI 3.14159265358979323846
 
@@ -64,7 +67,9 @@ void ImageDemo()
 
     //SDL_Surface* square = drawLargestSquare(image, intersectList);
 
-    SDL_Surface* HOU = hough(image);
+    //SDL_Surface* HOU = hough(image_rlsa);
+
+    init_hough(
     
     Image_ToRenderer(HOU,renderer);
 

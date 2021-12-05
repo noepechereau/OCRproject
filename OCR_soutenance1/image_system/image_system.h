@@ -10,4 +10,7 @@ void Save_Cases(SDL_Surface* image);
 void SDL_PutPixel32(SDL_Surface *surface, int x, int y, Uint32 pixel);
 Uint32 SDL_GetPixel32(SDL_Surface *surface, int x, int y);
 
+Uint32 get_pixel(SDL_Surface *surface, unsigned x, unsigned y);
+void put_pixel(SDL_Surface *surface, unsigned x, unsigned y, Uint32 pixel);
+
 #endif // IMAGE_SYSTEM_H_INCLUDED
