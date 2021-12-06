@@ -1,7 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <err.h>
+#include <string.h>
 #include "learning.h"
+#include "SDL2/SDL_image.h"
+#include "../useful/basics.h"
+#include "../image_system/image_system.h"
+#include "../image_system/image_manipulation.h"
+#include "../image_system/color_system.h"
 
 void learn(NeuralNetwork* network, double v, int* inputs, double* expected)
 {
@@ -15,9 +21,32 @@ void learn(NeuralNetwork* network, double v, int* inputs, double* expected)
     backProp(network, v, expected);
 }
 
+int* image_for_train(SDL_Surface* image)
+{
+    int* list = malloc(28*28*sizeof(double));
+    int w = image->w;
+    int h = image->h;
+    int c;
+    int index = 0;
+
+    for (int i = 0; i < h; i++)
+    {
+        for (int j = 0; j < w; j++)
+        {
+            c = Pixel_GetR(SDL_GetPixel32(image, j, i));
+            if (c <= 125)
+                list[index] = 1;
+            else
+                list[index] = 0;
+            index++;
+        }
+     }
+    return list;
+}
+
 int main()
 {
-	NeuralNetwork* network = GenerateNetwork(25, 15, 9);
+	NeuralNetwork* network = GenerateNetwork(784, 50, 9);
 	
 	/*
 	printList(network->activations,0,25+15+9) ;
@@ -31,17 +60,23 @@ int main()
 	printList(network->asciiOutputs,0,9) ;
 	printf("\n\n") ;
 	*/
-	printf("%d\n",randd()) ;
-	printf("%d\n",randd()) ;
-	printf("%d\n",randd()) ;
 	
 	//printNetwork(network);
 	double v = 0.02;
-	double expected[9] = {0, 0, 1, 0, 0, 0, 0, 0, 0};
-        int inputs[25] = {0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0};
+	double expected[9] = {1, 0, 0, 0, 0, 0, 0, 0, 0};
+    
 	//printNetwork(network);
-    	learn(network, v, inputs, expected);
-    	printf("\n\n\n\n\n");
+    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Surface* image = Image_Load(".afs/OCRproject/images/image1");
+    SDL_Window* window = SDL_CreateWindow("SDL2 Displaying Image",
+                                          SDL_WINDOWPOS_UNDEFINED,
+                                          SDL_WINDOWPOS_UNDEFINED,
+                                          image->w, image->h, 0);
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+
+    int* inputs = image_for_train(image);
+    learn(network, v, inputs, expected);
+    printf("\n\n\n\n\n");
 	//printNetwork(network);
 	
 	/*
