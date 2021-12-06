@@ -4,7 +4,6 @@
 
 #include "demo.h"
 #include "useful/basics.h"
-#include "NeuralNetworks/DemoNeuralNetwork.h"
 #include "SudokuSolver/sudoku.h"
 
 int main()
@@ -19,17 +18,6 @@ int main()
     {
         ImageDemo();
     }
-        
-    if (!strcmp(choice,"1"))
-    {
-        DemoNeural();
-    }
-    
-    if (!strcmp(choice,"2"))
-    {
-        DemoSolver();
-    }
-
 	return 0;
 }
 
