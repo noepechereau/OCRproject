@@ -7,6 +7,7 @@
 #include "useful/basics.h"
 #include "image_system/image_system.h"
 #include "image_system/image_manipulation.h"
+#include "sudoku_detection/grid_det.h"
 
 #define M_PI 3.14159265358979323846
 
@@ -35,7 +36,7 @@ void ImageDemo()
     //---- SDL INIT
     //------------------------------------------------------------------------
     SDL_Init(SDL_INIT_VIDEO);
-    SDL_Surface* image = Image_Load("images/image_02.bmp");
+    SDL_Surface* image = Image_Load("images/image_01.bmp");
     SDL_Window* window = SDL_CreateWindow("SDL2 Displaying Image",
                                           SDL_WINDOWPOS_UNDEFINED,
                                           SDL_WINDOWPOS_UNDEFINED,
@@ -60,24 +61,29 @@ void ImageDemo()
         Image_ToRenderer(image_rot,renderer);
 	}*/
 
+    //SDL_Surface* grid = GridDetCut(image);
+    //Image_ToRenderer(grid, renderer);
+
+
     //drawIntersect(image, intersectList);
 
     //SDL_Surface* square = drawLargestSquare(image, intersectList);
 
-    SDL_Surface* test = GridDetect(image);
+    /*SDL_Surface* test = GridDetect(image);*/
 
-    Image_ToRenderer(test,renderer);
+    Image_ToRenderer(image,renderer);
 
     //------------------------------------------------------------------------
     //---- GRILLE DETECTION, GRILLE SAVING AND CASE SAVING
     //------------------------------------------------------------------------;
 
-    /*PixelBlock grille = Detect_Grille(image_rlsa, renderer);
+
+    PixelBlock grille = Detect_Grille(image_rlsa, renderer);
 
     Case_Save(grille.right_top.x, grille.left_top.x, grille.left_bottom.y,
               grille.left_top.y, image, "grille.bmp");
     SDL_Surface* Grille = Image_Load("grille.bmp");
-    Save_Cases(Grille);*/
+    Save_Cases(Grille);
 
     SDL_RenderPresent(renderer);
 

@@ -5,6 +5,8 @@
 #include "../useful/basics.h"
 
 
+#define MARGE 10;
+
 void Image_ToRenderer(SDL_Surface * image, SDL_Renderer* renderer)
 {
     SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, image);
@@ -107,15 +109,16 @@ void put_pixel(SDL_Surface *surface, unsigned x, unsigned y, Uint32 pixel)
 void Case_Save(int x, int x2, int y, int y2, SDL_Surface* image, char* name)
 {
     SDL_Rect rect;
-    rect.y = y2;
-    rect.x = x2;
-    rect.w = x - x2;
-    rect.h = y - y2;
+    rect.y = y2 + MARGE;
+    rect.x = x2 + MARGE;
+    rect.w = x - x2 - 2*MARGE;
+    rect.h = y - y2 - 2*MARGE;
 
     SDL_Surface* new_image = SDL_CreateRGBSurface(0,rect.w, rect.h, 32,0,0,0,0);
 
-    SDL_BlitSurface(image, &rect, new_image, NULL);
+    SDL_BlitScaled(image, &rect, new_image, NULL);
     SDL_SaveBMP(new_image, name);
+    SDL_FreeSurface(new_image);
 }
 void Save_Cases(SDL_Surface* image)
 {
@@ -123,17 +126,16 @@ void Save_Cases(SDL_Surface* image)
     int hc = image->h/9;
     int index = 0;
 
-    while (index < 80)
+    for (int i = 0; i < image->h; i+= hc)
     {
-        for (int i = 3; i < image->h-3; i+= hc)
+        for (int j = 0; j < image->w; j+= wc)
         {
-            for (int j = 3; j < image->w-3; j+= wc)
-            {
-                char str1[19];
-                snprintf(str1, 19, "cases/case_%d.bmp", index);
-                Case_Save(j+wc, j, i+wc, i, image, str1);
-                index++;
-            }
+            if (index == 81)
+                break;
+            char str1[19];
+            snprintf(str1, 19, "cases/case_%d.bmp", index);
+            Case_Save(j+wc, j, i+wc, i, image, str1);
+            index++;
         }
     }
 }
