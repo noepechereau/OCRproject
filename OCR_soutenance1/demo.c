@@ -21,9 +21,9 @@
 
 void ImageDemo()
 {
-    char path[99] = {0};
+    /*char path[99] = {0};
     char rlsa[2] = {0};
-    char angle[3] = {0};
+    char angle[3] = {0};*/
     //Console_ReadString(path,"\nImage path : ", 99);
     //Console_ReadString(angle,"Rotation (angle in degree) :", 3);
     //double ang;
@@ -59,26 +59,26 @@ void ImageDemo()
     {
         Image_ToRenderer(image_rot,renderer);
 	}*/
-    
+
     //drawIntersect(image, intersectList);
 
     //SDL_Surface* square = drawLargestSquare(image, intersectList);
 
-    SDL_Surface* HOU = hough(image);
-    
-    Image_ToRenderer(HOU,renderer);
+    SDL_Surface* test = GridDetect(image);
+
+    Image_ToRenderer(test,renderer);
 
     //------------------------------------------------------------------------
     //---- GRILLE DETECTION, GRILLE SAVING AND CASE SAVING
     //------------------------------------------------------------------------;
-    
+
     /*PixelBlock grille = Detect_Grille(image_rlsa, renderer);
 
     Case_Save(grille.right_top.x, grille.left_top.x, grille.left_bottom.y,
               grille.left_top.y, image, "grille.bmp");
     SDL_Surface* Grille = Image_Load("grille.bmp");
     Save_Cases(Grille);*/
-    
+
     SDL_RenderPresent(renderer);
 
     SDL_FreeSurface(image);
