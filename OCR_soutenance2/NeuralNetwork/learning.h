@@ -5,9 +5,9 @@
 #include "forwardprop.h"
 #include <SDL2/SDL.h>
 #include <stdbool.h>
-#include "../OCR_soutenance1/struct/pixel.h"
+#include "../struct/pixel.h"
 
-void learn(NeuralNetwork* network, double v, int* inputs, double* expected);
-int* image_for_train(SDL_Surface* image);
+void learn(NeuralNetwork* network, double v, double* inputs, double* expected);
+double* image_for_train(SDL_Surface* image);
 
 #endif

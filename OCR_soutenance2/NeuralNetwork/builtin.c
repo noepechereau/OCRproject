@@ -18,7 +18,7 @@ double sigmoid(double x)
 
 double randd()
 {
-    srand(time(NULL)) ;
+    //srand(time(NULL)) ;
     return (((double)rand() / (RAND_MAX)) * 2) - 1;
 }
 
@@ -94,6 +94,10 @@ void printList(double* list, size_t start, size_t len)
     printf("[");
     for (size_t i = start; i < len; i++)
     {
+        if ( i % 28 == 0 ) 
+        {
+            printf("\n");
+        }
         printf(" %f ", list[i]);
     }
     printf("]\n");
@@ -108,7 +112,7 @@ void printNetwork(NeuralNetwork* network)
     printList(network->activations, 0, network->inputNumber);
 
     printf("Weights :");
-    printList(network->inputWeights, 0, network->inputNumber * network->hiddenNumber);
+    //printList(network->inputWeights, 0, network->inputNumber * network->hiddenNumber);
 
 
     printf("Hidden row : \n");
