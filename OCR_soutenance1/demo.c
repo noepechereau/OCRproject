@@ -9,17 +9,6 @@
 #include "image_system/image_manipulation.h"
 #include "sudoku_detection/grid_det.h"
 
-#define M_PI 3.14159265358979323846
-
-#define degToRad(angleInDegrees) ((angleInDegrees) * M_PI / 180.0)
-#define radToDeg(angleInRadians) ((angleInRadians) * 180.0 / M_PI)
-#define COUNT 300
-#define MARGIN 5
-#define SIDE_MARGIN 7
-#define THETAS 91
-#define HOUGH_MARGIN 2
-#define SQUARE_MARGIN 0
-
 void ImageDemo()
 {
     /*char path[99] = {0};
@@ -35,23 +24,42 @@ void ImageDemo()
     //------------------------------------------------------------------------
     //---- SDL INIT
     //------------------------------------------------------------------------
+
     SDL_Init(SDL_INIT_VIDEO);
-    SDL_Surface* image = Image_Load("images/image_01.bmp");
     SDL_Window* window = SDL_CreateWindow("SDL2 Displaying Image",
                                           SDL_WINDOWPOS_UNDEFINED,
                                           SDL_WINDOWPOS_UNDEFINED,
-                                          image->w, image->h, 0);
+                                          1000, 1000, 0);
+
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
 
+    char path[50];
+
+    SDL_Surface* image = NULL;
+
+    for (int i = 0; i < 9; i++)
+    {
+        snprintf(path,50,"data_base/2_%d_resultat.bmp", i);
+
+        image = Image_Load(path);
+
+        ApplyCorrection(image);
+
+        SDL_Delay(500);
+
+        Image_ToRenderer(image, renderer);
+        SDL_RenderPresent(renderer);
+        //SDL_FreeSurface(image);
+    }
 
     //------------------------------------------------------------------------
     //---- PREPARE TO GRILLE DETECTION
     //------------------------------------------------------------------------
 
-    ApplyCorrection(image);
+    //ApplyCorrection(image);
     //SDL_Surface* image_rot = Image_Rotate(image, ang);
 
-    SDL_Surface* image_rlsa = Detect_RLSA_Block(image,7);
+    //SDL_Surface* image_rlsa = Detect_RLSA_Block(image,7);
     /*if (strcmp(rlsa,"y"))
     {
         Image_ToRenderer(image_rlsa, renderer);
@@ -71,13 +79,13 @@ void ImageDemo()
 
     /*SDL_Surface* test = GridDetect(image);*/
 
-    Image_ToRenderer(image,renderer);
+    //Image_ToRenderer(image,renderer);
 
     //------------------------------------------------------------------------
     //---- GRILLE DETECTION, GRILLE SAVING AND CASE SAVING
     //------------------------------------------------------------------------;
 
-
+/*
     PixelBlock grille = Detect_Grille(image_rlsa, renderer);
 
     Case_Save(grille.right_top.x, grille.left_top.x, grille.left_bottom.y,
@@ -86,7 +94,7 @@ void ImageDemo()
     Save_Cases(Grille);
 
     SDL_RenderPresent(renderer);
-
+*/
     SDL_FreeSurface(image);
     SDL_DestroyRenderer(renderer);
     PauseSDL();

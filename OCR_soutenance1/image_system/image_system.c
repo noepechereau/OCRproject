@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "../useful/basics.h"
+#include "image_system.h"
 
 
 #define MARGE 10;
@@ -10,7 +11,12 @@
 void Image_ToRenderer(SDL_Surface * image, SDL_Renderer* renderer)
 {
     SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, image);
-	SDL_RenderCopy(renderer, texture, NULL, NULL);
+    if (texture == NULL) {
+        fprintf(stderr, "CreateTextureFromSurface failed: %s\n", SDL_GetError());
+        exit(1);
+    }
+    SDL_RenderCopy(renderer, texture, NULL, NULL);
+    SDL_DestroyTexture(texture);
 }
 
 SDL_Surface* Image_Load(char* path)
