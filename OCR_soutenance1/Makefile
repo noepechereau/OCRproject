@@ -1,7 +1,8 @@
 CC = @gcc
 CFLAGS = -Wall -Wextra -g -ldl -lm
 
-SRC = useful/basics.c image_system/image_manipulation.c image_system/color_system.c image_system/image_system.c main.c demo.c NeuralNetworks/BuiltinsNeuralNetworks.c NeuralNetworks/BackPropagation.c NeuralNetworks/DemoNeuralNetwork.c NeuralNetworks/FileManagment.c NeuralNetworks/NeuralNetwork.c sudoku_detection/grille_detection.c rotation/rotation.c SudokuSolver/sudoku.c sudoku_detection/grid_det.c
+SRC = useful/basics.c image_system/image_manipulation.c image_system/color_system.c image_system/image_system.c main.c demo.c sudoku_detection/grille_detection.c rotation/rotation.c SudokuSolver/sudoku.c sudoku_detection/grid_det.c
+
 
 LINKERFLAGS = -lSDL2 -lSDL2_image
 

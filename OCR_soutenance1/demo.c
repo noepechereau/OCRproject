@@ -11,16 +11,6 @@
 
 void ImageDemo()
 {
-    /*char path[99] = {0};
-    char rlsa[2] = {0};
-    char angle[3] = {0};*/
-    //Console_ReadString(path,"\nImage path : ", 99);
-    //Console_ReadString(angle,"Rotation (angle in degree) :", 3);
-    //double ang;
-    //sscanf(angle, "%lf", &ang);
-    //Console_ReadString(rlsa,"RLSA (y or n) :", 2);
-
-
     //------------------------------------------------------------------------
     //---- SDL INIT
     //------------------------------------------------------------------------
@@ -37,11 +27,12 @@ void ImageDemo()
 
     SDL_Surface* image = NULL;
 
-    for (int i = 0; i < 9; i++)
+    for (int i = 1; i < 5; i++)
     {
-        snprintf(path,50,"data_base/2_%d_resultat.bmp", i);
+        snprintf(path,50,"realdata1-%d.bmp", i);
 
         image = Image_Load(path);
+        image = SDL_ConvertSurfaceFormat(image, SDL_PIXELFORMAT_ARGB8888, 0);
 
         ApplyCorrection(image);
 
@@ -67,6 +58,7 @@ void ImageDemo()
     else
     {
         Image_ToRenderer(image_rot,renderer);
+<<<<<<< HEAD
 	}*/
 
     //SDL_Surface* grid = GridDetCut(image);
@@ -81,6 +73,10 @@ void ImageDemo()
 
     //Image_ToRenderer(image,renderer);
 
+    //}
+//Image_ToRenderer(image,renderer);
+//>>>>>>> main
+
     //------------------------------------------------------------------------
     //---- GRILLE DETECTION, GRILLE SAVING AND CASE SAVING
     //------------------------------------------------------------------------;
@@ -88,8 +84,7 @@ void ImageDemo()
 /*
     PixelBlock grille = Detect_Grille(image_rlsa, renderer);
 
-    Case_Save(grille.right_top.x, grille.left_top.x, grille.left_bottom.y,
-              grille.left_top.y, image, "grille.bmp");
+    Case_Save(grille.right_top.x, grille.left_top.x, grille.left_bottom.y, grille.left_top.y, image, "grille.bmp");
     SDL_Surface* Grille = Image_Load("grille.bmp");
     Save_Cases(Grille);
 
@@ -97,7 +92,7 @@ void ImageDemo()
 */
     SDL_FreeSurface(image);
     SDL_DestroyRenderer(renderer);
-    PauseSDL();
+//PauseSDL();
     SDL_QuitSubSystem(SDL_INIT_VIDEO);
     SDL_Quit();
 }

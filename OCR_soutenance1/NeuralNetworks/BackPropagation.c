@@ -36,36 +36,34 @@ void learnAverage(Node *h, Node *z, NetworkData *data, double v, size_t iter)
 
     for (size_t i = 0; i < iter; i++)
     {
-        double res[7];
-        for(size_t k = 0; k < 7; k++)
+        double res[7] = {0,0,0,0,0,0,0 } ;
+    
+        double inputs[4][2] =
         {
-            res[k] = 0;
-        }
-        double inputs[4][2] = {
             {1, 0},
             {0, 0},
             {1, 1},
             {0, 1}
         };
+        
         double excpectTab[4] = {1, 0, 0, 1};
 
-        double tempRes[7];
-        for (size_t k = 0; k < 7; k++)
-        {
-            tempRes[k] = 0;
-        }
+        double tempRes[7] = {0,0,0,0,0,0,0 } ;
+        
         for (size_t k = 0; k < 4; k++)
         {
             data->x = inputs[k][0];
             data->y = inputs[k][1];
             data->excpect = excpectTab[k];
-            updateTreeNode(h, z);
-            learnBackTree(h, z, data, tempRes, v);
+            updateTreeNode(h, z); //mise à jour des valeurs d'activation de H et Z
+            learnBackTree(h, z, data, tempRes, v); //stockage des données dans tempRes
             for (int j = 0; j < 7; j++)
             {
                 res[j] += tempRes[j];
             }
         }
+        
+        //mise à jour des connexions entrantes (poids et biais) de H et Z
 
         for (size_t k = 0; k < 3; k++)
         {

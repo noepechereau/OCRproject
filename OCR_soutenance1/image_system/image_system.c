@@ -33,16 +33,19 @@ SDL_Surface* Image_Copy(SDL_Surface* image)
 {
     return SDL_ConvertSurface(image, image->format, SDL_SWSURFACE);
 }
+
 void SDL_PutPixel32(SDL_Surface *surface, int x, int y, Uint32 pixel)
 {
     Uint8 *p = (Uint8*)surface->pixels + y * surface->pitch + x * 4;
     *(Uint32*)p = pixel;
 }
+
 Uint32 SDL_GetPixel32(SDL_Surface *surface, int x, int y)
 {
     Uint8 *p = (Uint8*)surface->pixels + y * surface->pitch + x * 4;
     return *(Uint32*)p;
 }
+
 
 
 Uint8 *pixel_ref(SDL_Surface *surf, unsigned x, unsigned y)
@@ -111,7 +114,6 @@ void put_pixel(SDL_Surface *surface, unsigned x, unsigned y, Uint32 pixel)
     }
 }
 
-
 void Case_Save(int x, int x2, int y, int y2, SDL_Surface* image, char* name)
 {
     SDL_Rect rect;
@@ -126,6 +128,8 @@ void Case_Save(int x, int x2, int y, int y2, SDL_Surface* image, char* name)
     SDL_SaveBMP(new_image, name);
     SDL_FreeSurface(new_image);
 }
+
+
 void Save_Cases(SDL_Surface* image)
 {
     int wc = image->w/9;
