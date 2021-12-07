@@ -55,5 +55,53 @@ size_t max_size(size_t a, size_t b)
         return a;
     return b;
 }
+//Useful function for QuickSort
+void swap(int* a, int* b)
+{
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+//Useful function for Quicksort
+size_t partition (int arr[], size_t low, size_t high)
+{
+    int pivot = arr[high];
+    size_t i = (low - 1);
+
+    for (size_t j = low; j <= high- 1; j++)
+    {
+        if (arr[j] < pivot)
+        {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
+}
+
+void quickSort(int arr[], size_t low, size_t high)
+{
+
+    if (low < high)
+    {
+        size_t pi = partition(arr, low, high);
+
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+size_t CalculMedian(int arr[],size_t size)
+{
+    quickSort(arr, 0, size-1);
+    size_t i = size / 2;
+    if (size % 2 == 0)
+    {
+        return (arr[i] + arr[i + 1]) / 2;
+    }
+    return arr[i+1];
+}
 
 
