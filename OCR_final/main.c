@@ -84,7 +84,6 @@ int main()
 	    	}
 	    }
 	    printList(network->activations,784+150,784+150+9);
-	    double activations[9] ;
 	    }
     SDL_RenderPresent(renderer);
 
