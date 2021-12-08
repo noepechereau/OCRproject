@@ -135,10 +135,12 @@ void Save_Cases(SDL_Surface* image)
     int wc = image->w/9;
     int hc = image->h/9;
     int index = 0;
+    int maxw = (image->w) - MARGE;
+    int maxh = (image->h) - MARGE;
 
-    for (int i = 0; i < image->h; i+= hc)
+    for (int i = 0; i < maxh; i+= hc)
     {
-        for (int j = 0; j < image->w; j+= wc)
+        for (int j = 0; j < maxw; j+= wc)
         {
             if (index == 81)
                 break;

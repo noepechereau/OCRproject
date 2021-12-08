@@ -10,6 +10,10 @@
 #include "../image_system/image_manipulation.h"
 #include "../image_system/color_system.h"
 #include "datasaving.h"
+#include "read.h"
+#include "../sudoku_detection/grille_detection.h"
+#include "../rotation/rotation.h"
+
 
 void learn(NeuralNetwork* network, double v, double* inputs, double* expected)
 {
@@ -25,9 +29,9 @@ void learn(NeuralNetwork* network, double v, double* inputs, double* expected)
 
 double* image_for_train(SDL_Surface* image)
 {
-    double* list = malloc(784*sizeof(double));
     int w = image->w;
     int h = image->h;
+    double* list = malloc(w*h*sizeof(double));
     int c;
     int index = 0;
 
@@ -49,12 +53,12 @@ double* image_for_train(SDL_Surface* image)
 
 void learnOneTime(NeuralNetwork* network)
 {
-    double learningRate = 0.10;
+    double learningRate = 0.50;
 
     char path[50];
     int x = (rand() % 9) + 1;
-    int y = rand() % 900 + 2;
-    snprintf(path,50,"database/realdata%d-%d.bmp",y,x);
+    int y = rand() % 2 ;
+    snprintf(path,50,"bmp/%d_%d.bmp",x,y);
 
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Surface* image = Image_Load(path);
@@ -70,58 +74,15 @@ void learnOneTime(NeuralNetwork* network)
     learn(network,learningRate,inputs,expected);
 
 }
-int main ()
+/*
+int main()
 {
-    NeuralNetwork* network = GenerateNetwork(784,150,9) ;
-    for (int i = 0 ; i < 300000 ; i ++)
-    {
-        learnOneTime(network) ;
-        printf("%d\n",i) ;
-    }
-    writeNetwork(network) ;
-    /*
-    NeuralNetwork* network = readNetwork();
-    char path[50];
-    snprintf(path,50,"database/realdata950-%d.bmp",1);
-    SDL_Surface* image = Image_Load(path);
-	image = SDL_ConvertSurfaceFormat(image,SDL_PIXELFORMAT_ARGB8888,0);
-	ApplyCorrection(image);
-
-	double* inputs = image_for_train(image);
-	for ( size_t i = 0 ; i < network->inputNumber ; i++ ) 
-	    {
-	    	network->activations[i] = inputs[i] ;
-	    }
-	forwardProp(network) ;
-	printList(network->activations,784+150,784+150+9);
-	
-	
-	snprintf(path,50,"database/realdata950-%d.bmp",2);
-    image = Image_Load(path);
-	image = SDL_ConvertSurfaceFormat(image,SDL_PIXELFORMAT_ARGB8888,0);
-	ApplyCorrection(image);
-
-	inputs = image_for_train(image);
-	for ( size_t i = 0 ; i < network->inputNumber ; i++ ) 
-	    {
-	    	network->activations[i] = inputs[i] ;
-	    }
-	forwardProp(network) ;
-	printList(network->activations,784+150,784+150+9);
-	
-	snprintf(path,50,"database/realdata950-%d.bmp",3);
-    image = Image_Load(path);
-	image = SDL_ConvertSurfaceFormat(image,SDL_PIXELFORMAT_ARGB8888,0);
-	ApplyCorrection(image);
-
-	inputs = image_for_train(image);
-	for ( size_t i = 0 ; i < network->inputNumber ; i++ ) 
-	    {
-	    	network->activations[i] = inputs[i] ;
-	    }
-	forwardProp(network) ;
-	printList(network->activations,784+150,784+150+9);*/
-	
-	
-	
+	NeuralNetwork* network = GenerateNetwork(784, 150, 9);
+	for (int i = 0; i < 50000; i++)
+	{
+		learnOneTime(network);
+		printf("%d", i);
+	}
+	writeNetwork(network);
 }
+	*/
