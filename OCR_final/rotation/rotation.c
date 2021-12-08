@@ -14,7 +14,7 @@ SDL_Surface* Image_Rotate(SDL_Surface* image, double angle)
     Uint32 color;
     double xp;
     double yp;
-    angle = angle * M_PI / 180;
+    angle = angle * M_PI/ 180;
     double cos_angle = cos(angle);
     double sin_angle = sin(angle);
     int center_x = (int) image->w / 2;
