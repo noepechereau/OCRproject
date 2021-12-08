@@ -25,6 +25,7 @@ double randd()
 
 NeuralNetwork* GenerateNetwork(size_t inputNumber, size_t hiddenNumber, size_t outputNumber)
 {
+	srand(time(NULL));
     NeuralNetwork* network = malloc(sizeof(NeuralNetwork));
     if (network == NULL)
         errx(1, "Memory allocation failed");

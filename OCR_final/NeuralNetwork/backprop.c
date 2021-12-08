@@ -80,16 +80,22 @@ void backProp(NeuralNetwork* network, double v, double* expected)
     double* deltaOut = calloc(network->outputNumber * network->hiddenNumber, sizeof(double));
     double* deltaHidden = calloc(network->hiddenNumber * network->inputNumber, sizeof(double));
     if(biasDeltaHidden == NULL || biasDeltaOut == NULL || deltaOut == NULL || deltaHidden == NULL)
-        errx(1, "Memory allocation failed learn");
+    {
+    	errx(1, "Memory allocation failed learn");
+    }
 
 	double* outError = calloc(network->outputNumber, sizeof(double));
     if(outError == NULL)
+    {
         errx(1, "Memory allocation failed find delta 1");
+    }
     outputError(network, expected, outError);
 
     double* hidError = calloc(network->hiddenNumber, sizeof(double));
     if(hidError == NULL)
+    {
         errx(1, "Memory allocation failed find delta 2");
+    }
     hiddenError(network, outError, hidError);
     
     biasDelta(network->hiddenNumber, hidError, v, biasDeltaHidden);

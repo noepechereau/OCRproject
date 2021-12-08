@@ -49,10 +49,10 @@ double* image_for_train(SDL_Surface* image)
 
 void learnOneTime(NeuralNetwork* network)
 {
-    double learningRate = 0.15;
+    double learningRate = 0.10;
 
     char path[50];
-    int x = (rand() % 9) +1;
+    int x = (rand() % 9) + 1;
     int y = rand() % 900 + 2;
     snprintf(path,50,"database/realdata%d-%d.bmp",y,x);
 
@@ -72,15 +72,15 @@ void learnOneTime(NeuralNetwork* network)
 }
 int main ()
 {
-    int itterations = 0 ;
     NeuralNetwork* network = GenerateNetwork(784,150,9) ;
-    for (int i = 0 ; i < 100000 ; i ++)
+    for (int i = 0 ; i < 300000 ; i ++)
     {
         learnOneTime(network) ;
-        printf("%d\n",itterations) ;
-        itterations ++ ;
+        printf("%d\n",i) ;
     }
     writeNetwork(network) ;
+    /*
+    NeuralNetwork* network = readNetwork();
     char path[50];
     snprintf(path,50,"database/realdata950-%d.bmp",1);
     SDL_Surface* image = Image_Load(path);
@@ -120,7 +120,7 @@ int main ()
 	    	network->activations[i] = inputs[i] ;
 	    }
 	forwardProp(network) ;
-	printList(network->activations,784+150,784+150+9);
+	printList(network->activations,784+150,784+150+9);*/
 	
 	
 	

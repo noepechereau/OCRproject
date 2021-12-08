@@ -2,7 +2,7 @@
 #define BUILTIN_H_INCLUDED
 
 #include <stdbool.h>
-//#include "../type/pixel.h"
+#include "../struct/pixel.h"
 
 void DisplayError(char* message);
 void Console_ReadString(char *var, char* message, int size);
